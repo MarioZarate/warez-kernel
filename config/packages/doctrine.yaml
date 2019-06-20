@@ -1,0 +1,58 @@
+doctrine:
+    dbal:
+        default_connection: movie
+        connections:
+            movie:
+                url: '%env(resolve:MOVIE_DATABASE_URL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+                default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_unicode_ci
+            serie:
+                url: '%env(resolve:SERIE_DATABASE_URL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+                default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_unicode_ci
+            shared:
+                url: '%env(resolve:SHARED_DATABASE_URL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+                default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_unicode_ci
+    orm:
+        default_entity_manager: movie
+        entity_managers:
+            movie:
+                connection: movie
+                mappings:
+                    Movie:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/Movie'
+                        prefix: 'App\Entity\Movie'
+                        alias: Movie
+            serie:
+                connection: serie
+                mappings:
+                    Serie:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/Serie'
+                        prefix: 'App\Entity\Serie'
+                        alias: Serie
+            shared:
+                connection: shared
+                mappings:
+                    Shared:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/Shared'
+                        prefix: 'App\Entity\Shared'
+                        alias: Shared
